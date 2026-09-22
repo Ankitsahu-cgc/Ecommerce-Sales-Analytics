@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Commerce Sales & Performance Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1>E-Commerce Sales & Performance Dashboard</h1>
+      <p>Interactive sales, profit, order and regional analysis · Jan–Jun 2025</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="toolbar panel">
+      <div class="filters">
+        <div>
+          <label for="category">Category</label>
+          <select id="category" multiple></select>
+        </div>
+        <div>
+          <label for="status">Order Status</label>
+          <select id="status" multiple></select>
+        </div>
+        <div>
+          <label for="payment">Payment Mode</label>
+          <select id="payment" multiple></select>
+        </div>
+        <div>
+          <label for="state">State / City</label>
+          <select id="state" multiple></select>
+        </div>
+        <div class="date-filter">
+          <label>Order Date</label>
+          <div class="date-row">
+            <select id="dateFrom"></select>
+            <select id="dateTo"></select>
+          </div>
+        </div>
+      </div>
+      <div class="toolbar-bottom">
+        <button id="reset" class="btn">Reset Filters</button>
+        <span id="filterInfo"></span>
+      </div>
+    </section>
+
+    <section class="kpis">
+      <div class="kpi panel"><span>Total Sales</span><strong id="kSales">₹0</strong><small>Sales</small></div>
+      <div class="kpi panel"><span>Total Net Amount</span><strong id="kNet">₹0</strong><small>Net Amount</small></div>
+      <div class="kpi panel"><span>Total Profit</span><strong id="kProfit">₹0</strong><small>Profit</small></div>
+      <div class="kpi panel"><span>Total Orders</span><strong id="kOrders">0</strong><small>Distinct Order_ID</small></div>
+      <div class="kpi panel"><span>Average Discount</span><strong id="kDiscount">0%</strong><small>Average Discount</small></div>
+    </section>
+
+    <section id="dashboard" class="grid">
+      <article class="chart panel wide">
+        <h2>Sales Trend Over Time</h2>
+        <div id="trend" class="plot"></div>
+      </article>
+
+      <article class="chart panel side">
+        <h2>Order Status Breakdown <span id="returnRate" class="pill">Return Rate: 0%</span></h2>
+        <div id="statusChart" class="plot"></div>
+      </article>
+
+      <article class="chart panel half">
+        <h2>Sales by Category</h2>
+        <p class="hint">Click a category bar for product-level detail.</p>
+        <div id="categoryChart" class="plot"></div>
+      </article>
+
+      <article class="chart panel half">
+        <h2>Top 5 Products by Sales</h2>
+        <div id="productChart" class="plot"></div>
+      </article>
+
+      <article class="chart panel wide">
+        <h2>Sales by State / City</h2>
+        <div id="mapChart" class="plot"></div>
+      </article>
+
+      <article class="chart panel side">
+        <h2>Payment Mode Distribution</h2>
+        <div id="paymentChart" class="plot"></div>
+      </article>
+
+      <article class="chart panel half">
+        <h2>Profit vs Discount</h2>
+        <div id="scatterChart" class="plot"></div>
+      </article>
+
+      <article class="chart panel half">
+        <h2>Category-wise Profit</h2>
+        <div id="profitChart" class="plot"></div>
+      </article>
+    </section>
+
+    <section id="detail" class="panel detail">
+      <button id="backBtn" class="btn">← Back to Dashboard</button>
+      <h2 id="detailTitle"></h2>
+      <p class="hint">Product-level detail for the selected category.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Product</th><th>Orders</th><th>Sales</th><th>Net Amount</th><th>Profit</th><th>Avg Discount</th></tr>
+          </thead>
+          <tbody id="detailBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      Data source: Final_Clean_Ecommerce.csv · Dashboard built with HTML, CSS, JavaScript and Plotly.js.
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
